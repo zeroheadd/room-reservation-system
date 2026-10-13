@@ -1,0 +1,55 @@
+# ---------------------------------------------------------------------------
+# Build output
+# ---------------------------------------------------------------------------
+[Bb]in/
+[Oo]bj/
+[Dd]ebug/
+[Rr]elease/
+*.user
+*.suo
+*.userosscache
+*.sln.docstates
+TestResults/
+*.trx
+*.coverage
+*.coveragexml
+coverage/
+
+# ---------------------------------------------------------------------------
+# Node / frontend
+# ---------------------------------------------------------------------------
+node_modules/
+client/dist/
+.vite/
+*.tsbuildinfo
+
+# The SPA build copied here by publish-client.cmd (see README).
+src/RoomReservation.Api/wwwroot/
+
+# ---------------------------------------------------------------------------
+# Local toolchain installed by this checkout (see README, "Local toolchain")
+# ---------------------------------------------------------------------------
+.dotnet/
+.dotnet-home/
+.nuget/
+.npm-cache/
+.appdata/
+.tmp/
+
+# ---------------------------------------------------------------------------
+# Editors and OS
+# ---------------------------------------------------------------------------
+.vs/
+.vscode/
+.idea/
+*.swp
+Thumbs.db
+desktop.ini
+.DS_Store
+
+# ---------------------------------------------------------------------------
+# Environment overrides - never commit secrets or machine specific settings
+# ---------------------------------------------------------------------------
+.env
+.env.local
+appsettings.Local.json
