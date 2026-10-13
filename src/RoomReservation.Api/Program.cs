@@ -85,28 +85,29 @@ if (builder.Configuration.GetValue("Database:Seed", true))
     await DbSeeder.SeedAsync(db, clock, logger);
 }
 
+app.UseCors(DevCorsPolicy);
+
+// Serve the built React app when it has been copied to wwwroot (see publish-client.cmd), so a
+// single process can host both halves of the application. This is registered BEFORE Swagger UI,
+// because Swagger's UI is served at /index.html by default and would otherwise shadow the SPA.
+// During development the Vite dev server is used instead and this simply finds nothing.
+app.UseDefaultFiles();
+app.UseStaticFiles();
+
+// The OpenAPI document and its UI. The UI is pinned to the /swagger prefix and registered after
+// the static files, so it can never shadow index.html of the SPA.
 app.UseSwagger();
 app.UseSwaggerUI(options =>
 {
     options.SwaggerEndpoint("/swagger/v1/swagger.json", "Room reservation API v1");
     options.DocumentTitle = "Room reservation API";
+    options.RoutePrefix = "swagger";
 });
-
-app.UseCors(DevCorsPolicy);
-
-// Serve the built React app when it has been copied to wwwroot (see build.cmd), so a single
-// process can host both halves of the application. During development the Vite dev server is
-// used instead and this simply finds nothing.
-app.UseDefaultFiles();
-app.UseStaticFiles();
 
 app.MapControllers();
 
 // Client side routing: any non-API path returns index.html so a refresh on /reservations works.
 app.MapFallbackToFile("index.html");
-
-app.MapGet("/", () => Results.Redirect("/swagger"))
-   .ExcludeFromDescription();
 
 app.MapGet("/health", () => Results.Ok(new { status = "healthy" }))
    .ExcludeFromDescription();
