@@ -36,6 +36,11 @@ src/RoomReservation.Api/wwwroot/
 .appdata/
 .tmp/
 
+# Scratch directories the .NET tooling creates when NUGET_PACKAGES is pointed at
+# a local path. Not project content.
+NuGet/
+Migrations/
+
 # ---------------------------------------------------------------------------
 # Editors and OS
 # ---------------------------------------------------------------------------

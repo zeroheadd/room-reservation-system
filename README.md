@@ -304,8 +304,8 @@ violation with its own code.
 ## Tests
 
 ```cmd
-build.cmd test          REM backend, 73 tests
-cd client && npm test   REM frontend, 16 tests
+build.cmd test                          REM backend, 73 tests
+cd client ^&^& npm test                 REM frontend, 16 tests
 ```
 
 **Backend (73)** — `tests/RoomReservation.Api.Tests`
